@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		 tags = {"@dev"},
+		 tags = {"@JIRA-001"},
 		 glue = {"hooks", "steps"},
 		 plugin = {"io.qameta.allure.cucumber3jvm.AllureCucumber3Jvm",
 				 	"pretty","json:target/json-cucumber-reports/cucumber.json",

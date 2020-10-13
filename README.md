@@ -92,10 +92,10 @@ localizado na raiz do projeto
 
 Configurações necessárias para rodar o pipeline no Jenkins
 
-*   [Allure configurado no Jenkins](https://docs.qameta.io/allure/#_jenkins)
-*   [Docker instalado na máquina agente](https://www.docker.com/products/docker-desktop)
-*   Plugins
-    * [Allure Jenkins Plugin](https://plugins.jenkins.io/allure-jenkins-plugin)
+* [Allure configurado no Jenkins](https://docs.qameta.io/allure/#_jenkins)
+* [Docker instalado na máquina agente](https://www.docker.com/products/docker-desktop)
+* Plugins
+* [Allure Jenkins Plugin](https://plugins.jenkins.io/allure-jenkins-plugin)
    
 ### ETAPAS
 
@@ -107,6 +107,12 @@ Configurações necessárias para rodar o pipeline no Jenkins
 ## EVIDÊNCIAS
 
 Os arquivos com as evidências ficam localizados na pasta target do projeto, esta pasta só é criada depois da primeira execução.
+
+
+## LINKS DE APOIO
+
+* [JSON para Classe Java](https://www.site24x7.com/pt/tools/json-para-java.html)
+* [JSON para Schema](_https://www.liquid-technologies.com/online-json-to-schema-converter_)
 
 ```
  Report HTML: target\site\index.html

@@ -1,6 +1,5 @@
 package services;
 
-import core.DataYaml;
 import io.restassured.http.ContentType;
 import lombok.extern.log4j.Log4j2;
 import pojo.Users;

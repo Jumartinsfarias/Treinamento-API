@@ -5,6 +5,7 @@
 Funcionalidade: CRUD Api Users
   Eu como cliente gostaria de consultar, alterar, criar e deletar o os dados de um usuário
 
+  @analitico
   Cenário: CT001 - Users - Criar um novo usuário
     Dado que o usuário quer criar um novo usuário
     E o usuário informar no campo "login" o valor "robsonagapito"
@@ -14,6 +15,7 @@ Funcionalidade: CRUD Api Users
     Quando o usuário salvar os dados
     Então o usuário deverá ver o resultado "salvo com sucesso"
 
+  @analitico
   Cenário: CT002 - Users - Consultar um usuário existente
     Dado que o usuário quer criar um novo usuário
     E o usuário informar no campo "login" o valor "robsonagapito"

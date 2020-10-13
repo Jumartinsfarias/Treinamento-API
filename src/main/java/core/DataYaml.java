@@ -9,14 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-
 @Log4j2
 public class DataYaml{
 
     private static File getYamlDataFile(String fileName){
         log.info(String.format("Recuperando o caminho do arquivo %s.yml da massa de dados do ambiente %s"
                 ,fileName,System.getProperty("env")));
-        return new File("./src/test/resources/data/"+System.getProperty("env")+"/"+fileName+".yml");
+        return new File("./src/test/resources/data/" + System.getProperty("env") + "/"+fileName+".yml");
     }
 
     @SneakyThrows
@@ -27,11 +26,11 @@ public class DataYaml{
         Map<String , Object> maps;
         try {
             maps = (LinkedHashMap<String, Object>) mapper.readValue(getYamlDataFile(fileName), Map.class);
-            log.error(String.format("Retornando objeto HashMap com a massa de dados do arquivo %s.yml com titulo %s",fileName,titulo));
+            log.info(String.format("Retornando objeto HashMap com a massa de dados do arquivo %s.yml com titulo %s",fileName,titulo));
             return  (LinkedHashMap<String, String>) maps.get(titulo);
         } catch (IOException e) {
             log.error(String.format("Erro ao tentar ler o arquivo de massa %s.yaml - stackTrace: %s",fileName,e));
-            throw new Exception(e);
+            return new LinkedHashMap<String, String>();
         }
     }
 

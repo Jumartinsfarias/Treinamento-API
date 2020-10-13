@@ -19,9 +19,7 @@
 		<jackson.version>2.9.8</jackson.version>
 		<cucumber.version>3.0.2</cucumber.version>
 		<log4j.version>2.13.0</log4j.version>
-
-		<env>des</env> <!--	uat ou des ou preprod-->
-
+		<env>des</env> <!-- des, prod ou uat-->
 	</properties>
 
 	<build>
@@ -164,6 +162,13 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${log4j.version}</version>
+		</dependency>
+
+		<!--AeonBits - Responsavel por gerenciar as properties-->
+		<dependency>
+			<groupId>org.aeonbits.owner</groupId>
+			<artifactId>owner</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 
 	</dependencies>

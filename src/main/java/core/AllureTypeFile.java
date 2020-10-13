@@ -9,4 +9,5 @@ public interface AllureTypeFile {
     String RESPONSE_HEADERS ="Response headers";
     String RESPONSE_BODY = "Response body";
     String RESPONSE_COOKIES = "Response cookies";
+    String RESPONSE_STATUSCODE = "Response Status Code";
 }

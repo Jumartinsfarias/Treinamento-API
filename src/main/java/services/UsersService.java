@@ -1,57 +1,70 @@
 package services;
 
-import core.*;
-import response.pojo.users.Users;
-import com.google.gson.Gson;
-import io.qameta.allure.Allure;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import io.restassured.http.ContentType;
+import lombok.extern.log4j.Log4j2;
+import pojo.Users;
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.MatcherAssert.assertThat;
 
+@Log4j2
+public class UsersService extends TestingSupport {
 
-public class UsersService implements TestingType{
-
-    /**
-     * Retorna lista de usuários
-     *
-     * @param data
-     * @return
-     */
-    public Response getUsers(Map data){
-        String URI = "/users/";
-        RequestSpecification httpRequest = given().spec(Spec.spec);
-        Response response = httpRequest.get(URI+data.get("usuario_id"));
-        ReportType.reportToAllureUriRequest(URI);
-        return response;
+    public UsersService(){
+        setURI(getConfiguration().urlBase() + "/users");
+        setSchemaFile("schemas/users/users-schema.json");
+        setDataFile("Usuarios","usuarios");
     }
 
-    @Override
-    public boolean healthCheck(Response response, int statuCode){
-        ReportType.reportToAllureHeaderAndBodyResponse(response);
-        return response.getStatusCode() == statuCode;
+    public void setField(Users user, String field, String value) {
+        switch (field){
+            case "login": user.setLogin(value); break;
+            case "full_name": user.setFull_name(value); break;
+            case "email": user.setEmail(value); break;
+            case "age": user.setAge(Integer.valueOf(value)); break;
+            default: break;
+        }
     }
 
-    @Override
-    public boolean verifyBody(Response response,HashMap data){
-        Gson gson = new Gson();
+    public String getField(String field) {
+        String res = "";
+        Users usersAux = getGson().fromJson(getResponse().jsonPath().prettify(), Users.class);
 
-        Users users = gson.fromJson(response.jsonPath().prettyPrint(), Users.class);
-        assertThat(users.getEmail()).isNotNull().isNotEmpty();
-        assertThat(users.getName()).isEqualTo(data.get("nome"));
-        assertThat(users.getId()).isGreaterThanOrEqualTo(1);
-        return true;
+        switch (field){
+            case "login": res  = usersAux.getLogin(); break;
+            case "full_name": res = usersAux.getFull_name(); break;
+            case "email": res = usersAux.getEmail(); break;
+            case "age": res = usersAux.getAge().toString(); break;
+            default: break;
+        }
+        return res;
     }
 
-    @Override
-    public boolean verifySchema(Response response){
-        assertThat(response.getBody().prettyPrint(),matchesJsonSchemaInClasspath("schemas/users/users-schema.json"));
-        return true;
+    public void post(Users user) {
+        String bodySended = getGson().toJson(user);
+        logRequest(bodySended);
+        setResponse(given().
+                        when().
+                            contentType(ContentType.JSON).
+                            accept(ContentType.JSON).
+                            body(bodySended).
+                        post(getURI()).
+                        then().extract().response()
+                    );
+        logResponse();
+        Users usersAux = getGson().fromJson(getResponse().jsonPath().prettify(), Users.class);
+        setLastId(usersAux.getId());
     }
+
+    public void get(Integer id) {
+        setURI(getURI() + "/" + String.valueOf(id));
+        logRequest();
+        setResponse(given().
+                when().
+                contentType(ContentType.JSON).
+                accept(ContentType.JSON).
+                get(getURI()).
+                then().extract().response()
+        );
+        logResponse();
+    }
+
 }

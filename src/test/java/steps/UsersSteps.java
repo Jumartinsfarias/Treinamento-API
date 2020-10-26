@@ -99,4 +99,13 @@ public class UsersSteps  {
         HashMap data = usersService.getDataFile();
         usersService.get(Integer.valueOf(data.get("id").toString()));
     }
+
+    @E("o usuário atualizar as informações deste usuário")
+    public void oUsuarioAtualizarAsInformacoesDesteUsuario() {
+        usersService.put(user);
+    }
+
+    @Quando("o usuário deletar as informações deste usuário")
+    public void oUsuarioDeletarAsInformacoesDesteUsuario() {
+        usersService.delete(usersService.getLastId());    }
 }

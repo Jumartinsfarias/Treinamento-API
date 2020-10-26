@@ -54,9 +54,35 @@ Funcionalidade: CRUD Api Users
     Então o usuário deverá ver o resultado "sucesso"
     E o usuário deverá ter um schema válido para User Json
 
-#  Cenário: CT006 - Users - Alterar um usuário existente
-#
-#  Cenário: CT007 - Users - Deletar um usuário existente
-#
+  Cenário: CT006 - Users - Alterar um usuário existente
+    Dado que o usuário quer criar um novo usuário
+    E o usuário informar no campo "login" o valor "robsonagapito"
+    E o usuário informar no campo "full_name" o valor "Robson Agapito Correa"
+    E o usuário informar no campo "email" o valor "robson.correa@gft.com"
+    E o usuário informar no campo "age" o valor "18"
+    Quando o usuário salvar os dados
+    E o usuário informar no campo "login" o valor "bugluna"
+    E o usuário informar no campo "full_name" o valor "Bug Luna Agapito Correa"
+    E o usuário atualizar as informações deste usuário
+    E o usuário buscar as informações deste mesmo usuário
+    Então o usuário deverá ver o resultado "sucesso"
+    E o usuário deveria ver no campo "login" o valor "bugluna"
+    E o usuário deveria ver no campo "full_name" o valor "Bug Luna Agapito Correa"
+    E o usuário deveria ver no campo "email" o valor "robson.correa@gft.com"
+    E o usuário deveria ver no campo "age" o valor "18"
+
+  Cenário: CT007 - Users - Deletar um usuário existente
+    Dado que o usuário quer criar um novo usuário
+    E o usuário informar no campo "login" o valor "robsonagapito"
+    E o usuário informar no campo "full_name" o valor "Robson Agapito Correa"
+    E o usuário informar no campo "email" o valor "robson.correa@gft.com"
+    E o usuário informar no campo "age" o valor "18"
+    E o usuário salvar os dados
+    Quando o usuário deletar as informações deste usuário
+    Então o usuário deverá ver o resultado "not content"
+
+    Quando o usuário buscar as informações deste mesmo usuário
+    Então o usuário deverá ver o resultado "não encontrado"
+
 
 

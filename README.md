@@ -10,7 +10,7 @@ Requisitos de software e hardware necessários para executar este projeto de aut
 *   Maven 3.5.*
 *   Intellij IDE
 *   Plugins do Intellij
-    * Cumcuber for java
+    * Cumcuber for java + Gherkin
     * Lombok
     * Ideolog 
 

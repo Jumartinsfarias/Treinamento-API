@@ -55,16 +55,43 @@ public class UsersService extends TestingSupport {
     }
 
     public void get(Integer id) {
-        setURI(getURI() + "/" + String.valueOf(id));
+        String url = getURI() + "/" + id;
         logRequest();
         setResponse(given().
                 when().
                 contentType(ContentType.JSON).
                 accept(ContentType.JSON).
-                get(getURI()).
+                get(url).
                 then().extract().response()
         );
         logResponse();
     }
 
+    public void put(Users user) {
+        String bodySended = getGson().toJson(user);
+        String url = getURI() + "/" + getLastId();
+        logRequest(bodySended);
+        setResponse(given().
+                when().
+                contentType(ContentType.JSON).
+                accept(ContentType.JSON).
+                body(bodySended).
+                put(url).
+                then().extract().response()
+        );
+        logResponse();
+    }
+
+    public void delete(Integer id) {
+        String url = getURI() + "/" + id;
+        logRequest();
+        setResponse(given().
+                when().
+                contentType(ContentType.JSON).
+                accept(ContentType.JSON).
+                delete(url).
+                then().extract().response()
+        );
+        logResponse();
+    }
 }

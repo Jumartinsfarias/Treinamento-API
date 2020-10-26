@@ -49,14 +49,17 @@ public class TestingSupport {
     public int getFromMessageToStatus(String message) {
         HashMap<String, Integer> statusCodes = new HashMap<String,Integer>();
         statusCodes.put("salvo com sucesso", 201);
+        statusCodes.put("save with success", 201);
         statusCodes.put("sucesso", 200);
+        statusCodes.put("success", 200);
         statusCodes.put("not content", 204);
-        statusCodes.put("não encontrato", 404);
+        statusCodes.put("não encontrado", 404);
+        statusCodes.put("not found", 404);
         statusCodes.put("não autorizado", 401);
         return statusCodes.get(message);
     }
 
     public JsonSchemaValidator matchSchema() {
-        return matchesJsonSchemaInClasspath("schemas/users/users-schema.json");
+        return matchesJsonSchemaInClasspath(schemaFile);
     }
 }

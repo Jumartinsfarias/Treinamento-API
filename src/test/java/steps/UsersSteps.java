@@ -54,17 +54,18 @@ public class UsersSteps  {
         usersService = new UsersService();
         new Users();
         users = Users.builder().
-                email("robson.correa@gft.com").
-                full_name("Robson Agapito Correa").
-                age(18).
-                login("robsonagapito").
+                email("juliana.martinsfarias@gmail.com").
+                full_name("Juliana Martins de Farias").
+                age(29).
+                login("julianamartins").
                 build();
     }
 
     @Quando("^eu consultar um usuario$")
     public void euConsultarUmUsuario()  {
-        usersService.get(2654);
+        usersService.get(4079);
     }
+
 
     @Entao("^sera apresentado todos os dados deste usuario$")
     public void seraApresentadoTodosOsDadosDesteUsuario()  {
